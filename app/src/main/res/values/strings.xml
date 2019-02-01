@@ -3,4 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="no_news_yet">No news yet</string>
+    <string name="error_during_network">Error during network call. Please try again later</string>
+    <string name="test_title_string">Work Policies May Be Kinder, but Brutal Competition Isn’t</string>
 </resources>

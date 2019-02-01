@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/detailed_news_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:paddingEnd="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/error_during_network"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/detailed_news_progress_bar"
+        android:visibility="gone"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center" />
+
+    <LinearLayout android:id="@+id/layout_details_fragment"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/detailed_news_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/detailed_news_image"
+            android:layout_width="210dp"
+            android:layout_height="140dp"
+            android:layout_gravity="center"
+            android:paddingBottom="10dp"
+            fresco:placeholderImage="@drawable/place_holder"
+            fresco:placeholderImageScaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/detailed_summary_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="10dp" />
+
+
+        <Button
+            android:id="@+id/full_story_link"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="Full Story" />
+
+    </LinearLayout>
+</FrameLayout>

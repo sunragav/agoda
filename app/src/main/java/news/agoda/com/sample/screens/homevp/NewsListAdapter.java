@@ -1,4 +1,4 @@
-package news.agoda.com.sample;
+package news.agoda.com.sample.screens.homevp;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,12 +8,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.facebook.common.util.UriUtil;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.DraweeView;
 import com.facebook.imagepipeline.request.ImageRequest;
 
 import java.util.List;
+
+import news.agoda.com.sample.R;
+import news.agoda.com.sample.model.MediaEntity;
+import news.agoda.com.sample.model.NewsEntity;
 
 public class NewsListAdapter extends ArrayAdapter {
     private static class ViewHolder {
@@ -30,8 +35,7 @@ public class NewsListAdapter extends ArrayAdapter {
         NewsEntity newsEntity = (NewsEntity) getItem(position);
         List<MediaEntity> mediaEntityList = newsEntity.getMediaEntity();
         String thumbnailURL = "";
-        MediaEntity mediaEntity = mediaEntityList.get(0);
-        thumbnailURL = mediaEntity.getUrl();
+
 
         ViewHolder viewHolder;
         if (convertView == null) {
@@ -45,9 +49,22 @@ public class NewsListAdapter extends ArrayAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.newsTitle.setText(newsEntity.getTitle());
-        DraweeController draweeController = Fresco.newDraweeControllerBuilder().setImageRequest(ImageRequest.fromUri
-                (Uri.parse(thumbnailURL))).setOldController(viewHolder.imageView.getController()).build();
-        viewHolder.imageView.setController(draweeController);
+        if(!mediaEntityList.isEmpty()) {
+            MediaEntity mediaEntity = mediaEntityList.get(0);
+            thumbnailURL = mediaEntity.getUrl();
+            DraweeController draweeController = Fresco.newDraweeControllerBuilder().setImageRequest(ImageRequest.fromUri
+                    (Uri.parse(thumbnailURL))).setOldController(viewHolder.imageView.getController()).build();
+            viewHolder.imageView.setController(draweeController);
+        }
+        else{
+
+            Uri uri = new Uri.Builder()
+                    .scheme(UriUtil.LOCAL_RESOURCE_SCHEME) // "res"
+                    .path(String.valueOf(R.drawable.place_holder))
+                    .build();
+            DraweeController draweeControlleri = Fresco.newDraweeControllerBuilder().setUri(uri).build();
+            viewHolder.imageView.setController(draweeControlleri);
+        }
         return convertView;
     }
 }
